@@ -1,36 +1,25 @@
 <?php
-  $str = $_POST['answer'];
-  $str2 = $_POST['answer2'];
-  $file2 = scandir($str);
+
+
 
   function filelist($path, $wtfind){
     $fileList = 'Список совпадений в заданной директории: ';
-    $coinsid = preg_split("//", $wtfind, -1, PREG_SPLIT_NO_EMPTY);
-    $nm = iconv_strlen($wtfind);
+    $isd = is_dir($path);
 
-    if($path == NULL){ return "Вы не ввели директрию!";}
+  if($isd == false){ return "Вы не верно ввели директрию!";}else{
+    $file = scandir($path);
+  }
 
-     @$file = scandir($path);
-
-    if($file == false){
-      return "Вы не верно ввели директрию!";
-    }
     foreach ($file as $key => $value) {
-      $divide = preg_split("//", $value);
-      $count = 0;
-
-      foreach($coinsid as $key2 => $letter) {
-          foreach($divide as $key3 => $letterS) {
-          if($divide[$key3] == $coinsid[$key2]){
-            $count++; }
-          }
-          if($count == $nm){
-          $fileList .= "<br>";
-            $fileList .= $value; }
-      }
+      $result = strpos($value, $wtfind);
+      if ($result === false) {  } else {
+      $fileList .= $value;
+  }
+    }
+    return $fileList;
 }
-  return $fileList;
-}
+isset($_POST['answer']) ? $str = $_POST['answer'] : '';
+isset($_POST['answer2']) ? $str2 = $_POST['answer2'] : '';
   echo filelist($str, $str2);
 
  ?>

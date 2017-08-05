@@ -1,7 +1,6 @@
 
 <?php
 
-$arr = $_POST['answer'];
 
 function revWord($a){
 
@@ -25,6 +24,7 @@ $result .= "<br> Количество: $count";
   return $result;
 
 }
+isset($_POST['answer']) ? $arr = $_POST['answer'] : '';
 echo revWord($arr);
 
 ?>

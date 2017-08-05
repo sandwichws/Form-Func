@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Задание 2</title>
+		<title>Задание 12</title>
 		<style type="text/css">
      .wd { width: 600px;height: 400px;}
     </style>

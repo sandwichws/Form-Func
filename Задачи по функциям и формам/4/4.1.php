@@ -1,5 +1,5 @@
 <?php
-  $str = $_POST['answer'];
+
 
   function filelist($path){
     if($path == NULL){ return "Вы не ввели директрию!";}
@@ -18,7 +18,7 @@
     }
      return $fileList;
   }
-
+isset($_POST['answer']) ? $arr = $_POST['answer'] : '';
   echo filelist($str);
 
  ?>

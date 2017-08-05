@@ -1,6 +1,6 @@
 <?php
 
-$fls = $_POST['comment'];
+
 $ban = ["suka", "bljad", "putin"];
 
 function censura($a, $b){
@@ -29,7 +29,7 @@ fwrite($f, $a);
 fclose($f);
 return "Комментарий добавлен!";
 }
-
+isset($_POST['answer']) ? $str = $_POST['answer'] : '';
 echo censura($fls, $ban);
 
 ?>

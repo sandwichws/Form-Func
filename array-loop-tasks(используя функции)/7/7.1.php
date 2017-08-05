@@ -1,9 +1,6 @@
 
 <?php
-$arr = array();
-$arr = $_POST['answer'];
-$str = preg_split("/,/", $arr);
-$letr = preg_split('//', $arr,  -1, PREG_SPLIT_NO_EMPTY);
+
 
 
 function counter($chars = array(), $letrs = array()){
@@ -21,6 +18,11 @@ foreach ($chars as $key => $value) {
   }
   return $result;
 }
+isset($_POST['answer']) ? $arr = $_POST['answer'] : '';
+$str = preg_split("/,/", $arr);
+$letr = preg_split('//', $arr,  -1, PREG_SPLIT_NO_EMPTY);
+
+
 echo counter($str, $letr);
 
 ?>

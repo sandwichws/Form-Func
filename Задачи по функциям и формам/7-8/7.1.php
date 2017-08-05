@@ -1,8 +1,5 @@
 <?php
 
-$fls = $_POST['comment'];
-$ban = ["suka", "bljad", "putin"];
-
 function censura($a, $b){
 $prg = preg_split("//", $a, -1, PREG_SPLIT_NO_EMPTY);
 $num = "\r\nF48A1FA07400BC2EEBCE7170610E8083";
@@ -30,6 +27,8 @@ fclose($f);
 return "Комментарий добавлен!";
 }
 
+$ban = ["suka", "bljad", "putin"];
+isset($_POST['comment']) ? $fls = $_POST['comment'] : '';
 echo censura($fls, $ban);
 
 ?>

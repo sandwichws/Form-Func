@@ -1,6 +1,5 @@
 <?php
 
-$num = $_POST['answer'];
 $uploadfile = basename($_FILES['userfile']['name']);
 $origData = file_get_contents($uploadfile);
 
@@ -30,6 +29,7 @@ function removeWords($file, $data, $n){
 return "Готово! Файл изменен.";
 }
 
+isset($_POST['answer']) ? $arr = $_POST['answer'] : '';
 
 echo removeWords($uploadfile, $origData, $num);
 ?>

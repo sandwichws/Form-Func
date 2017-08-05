@@ -1,8 +1,6 @@
 
 <?php
 
-$arr = $_POST['answer'];
-
 function revWord($a){
   $pr = preg_split("/[,. ]+/", $a);
   $result = "";
@@ -41,7 +39,7 @@ foreach ($newAr as $key => $value) {
 
 return $result;
 }
-
+isset($_POST['answer']) ? $arr = $_POST['answer'] : '';
 echo revWord($arr);
 
 ?>

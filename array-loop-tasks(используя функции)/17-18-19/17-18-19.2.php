@@ -1,8 +1,8 @@
 
 <?php
-$arr = $_POST['answer'];
 
 function mwd($ar){
+  if($ar == NULL){ return "выберите один из вариантов!"; }
  date_default_timezone_set('UTC');
  $mth = ["January", "February", "March", "April", "May", "June", "July",
  "August", "September", "October", "November", "December"];
@@ -43,6 +43,8 @@ switch ($ar) {
 }
 return $list;
  }
+
+ isset($_POST['answer']) ? $arr = $_POST['answer'] : '';
 
 echo mwd($arr);
 

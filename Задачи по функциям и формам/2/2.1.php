@@ -1,37 +1,36 @@
 
 <?php
 
-$arr = $_POST['answer'];
-
-function top($a, $b){
-  $comletedn  = "ТОП $b самых длинных слов в тексте: ";
-  $str = preg_split("/[\s,.!?@+]+/", $a, -1, PREG_SPLIT_NO_EMPTY);
-  $count = 0;
-  $longest = [];
-
-  foreach ($str as $key => $value) {
-    $count++;
-    $a = ((string)iconv_strlen($value)) . $value;
-    $longest[$key] = $a;
-}//считаем кол-во слов и добавляем к каждой строке в начало цифру, равную
-//количеству слов для сортировки
-
- rsort($longest, SORT_NUMERIC); //соритрую в порядке убывания
-
- if($count < $b){ return "Введите минимум $b слов!"; }
-// првоерка на наличе достаточного кол-ва введенных слов
-
-foreach ($longest as $key => $value) {
-$longest[$key] = trim($value, '1234567890');
-}//удаление кол-ва строк из строки
-
-for($i = 0; $i < $b; $i++){
-  $comletedn .= "<br>";
-  $comletedn .= $longest[$i];
-}//добавляю нужное кол-во слов в главную строку
-return $comletedn;
+function string_sort($a, $b)
+{
+if (strlen($a) < strlen($b)) {
+  return 1; } elseif (strlen($a) == strlen($b)) {
+    return 0; } else { return -1; }
 }
 
-echo top($arr, 3);
+function top($a, $b){
+
+  $str = preg_split("/[\s,.!?@+]+/", $b, -1, PREG_SPLIT_NO_EMPTY);
+  usort($str, 'string_sort');
+  $completed = "ТОП $a слов в тексте: ";
+  $used = ["0"];
+
+    foreach ($str as $key => $value) {
+      foreach ($used as $key2 => $value2) {
+         if($value == $value2){
+          break; }
+          if($value2 == end($used)){
+            $completed .= "<br> $value"; $used[] = $value;}
+      }
+    }//проверка на совпадение. если слово уже было, заносим его в массив
+    //использованных слов
+
+  return $completed;
+}
+
+ isset($_POST['answer']) ? $arr = $_POST['answer'] : "";
+
+ echo top(3, $arr);
+
 
 ?>

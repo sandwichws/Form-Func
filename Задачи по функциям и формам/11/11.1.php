@@ -1,8 +1,6 @@
 
 <?php
 
-$arr = $_POST['answer'];
-
 mb_internal_encoding("UTF-8");
 function mb_ucfirst($text) {
     return mb_strtoupper(mb_substr($text, 0, 1)) . mb_substr($text, 1);
@@ -10,6 +8,7 @@ function mb_ucfirst($text) {
 
 
 function revWord($a){
+  if($a == NULL){ return "введите числа!";}
   $result = '';
   $revStr = explode(". ", $a);
 
@@ -23,6 +22,7 @@ function revWord($a){
   return $result;
 
 }
+isset($_POST['answer']) ? $arr = $_POST['answer'] : '';
 echo revWord($arr);
 
 ?>
